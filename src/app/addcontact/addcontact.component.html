@@ -1,0 +1,52 @@
+<div class="container">
+    <h2 > Add New Contact</h2>
+    <mat-divider></mat-divider>
+    
+        
+        <form class="example-form" [formGroup]="myForm">
+              <img [src]="imgUrl" class="profile-image">
+              <input type="file" accept="image/*" (change)="chooseImage($event.target.files)">
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="FristName" placeholder="First Name"> 
+               <mat-error *ngIf="FristName.hasError('required')">
+                Frist Name is <strong>required</strong>
+                </mat-error> 
+              </mat-form-field> 
+              <mat-form-field class="example-full-width">
+                <input matInput formControlName="lastName" placeholder="Last Name"> 
+               <mat-error *ngIf="lastName.hasError('required')">
+                Last Name is <strong>required</strong>
+                </mat-error> 
+              </mat-form-field>
+              <div class="phone-field">
+                <mat-form-field class="key-phone">
+                  <mat-select placeholder="country key" formControlName="key_phone">
+                    <mat-option *ngFor="let keyphone of keyphones" [value]="keyphone"  >
+                      {{keyphone}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="key_phone.hasError('required')">
+                    key phoneis <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>  
+                <mat-form-field class="phone-number">
+                  <input matInput type="number" formControlName="phone" placeholder="phone"> 
+                 <mat-error *ngIf="phone.hasError('required')">
+                  phone is <strong>required</strong>
+                  </mat-error> 
+                </mat-form-field> 
+              </div>
+            <mat-form-field class="example-full-width">
+              <input matInput formControlName="email" placeholder="email Address">
+               <mat-error *ngIf=" email.hasError('email')">
+                Please enter a valid email address
+              </mat-error> 
+             <mat-error *ngIf="email.hasError('required')">
+                Email is <strong>required</strong>
+              </mat-error> 
+            </mat-form-field> 
+            <button mat-raised-button  color="primary" class="btn-block " [disabled]="!myForm.valid" (click)="submit()"> Add Contact</button>
+            <button mat-raised-button  color="warn" class="btn-block " (click)="cancel()"> Cancel</button>
+          </form>
+    
+</div>

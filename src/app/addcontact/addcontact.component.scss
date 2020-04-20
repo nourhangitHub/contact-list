@@ -1,0 +1,25 @@
+form {
+    display: flex;
+    flex-direction: column;
+    .profile-image{
+        border-radius: 50%;
+        height: 165px;
+        margin-right: 35%;
+        margin-left: 35%;
+        margin-top: 20px;
+    }
+    .phone-field{
+        display: flex;
+        flex-direction: row;
+        .mat-form-field{
+          &.key-phone{
+            width: 30%;
+            padding-right: 30px;
+            }
+          &.phone-number{
+            width: 70%; 
+            padding-left: 30px;
+          }  
+        }      
+    }
+}

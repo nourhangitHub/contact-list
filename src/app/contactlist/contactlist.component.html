@@ -1,0 +1,32 @@
+<div class="container">
+    <form>
+        <mat-form-field >
+            <input  type="text" (keypress)="searchTerm.next($event)" matInput [formControl]="myControl"
+             [matAutocomplete]="auto" placeholder="search">
+            <mat-autocomplete #auto="matAutocomplete" >
+                <mat-option  *ngFor="let contact of pagElements" [value]="pagElements.firstName  +  pagElements.lastName">
+                    <div *ngIf="searchResults">
+                        <img mat-card-sm-image class="rounded float-left" [src]='pagElements.img_path'>
+                        {{ pagElements.firstName }} {{pagElements.lastName}}
+                    </div>
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+    </form>
+    <div class="row">
+        <button mat-raised-button  color="primary" class="btn-block " (click)="addContact()">
+            <span class="float-left">add New Contacts</span>
+            <mat-icon class="float-right">add</mat-icon>
+        </button>
+    </div>
+    <h3 mat-subheader>Contact List</h3>
+    <mat-card *ngFor="let contact of contactList$ ; last as last">
+        <img mat-card-sm-image class="rounded float-left" [src]='contact.img_path'>
+        <mat-card-content > {{contact.firstName}} {{contact.lastName}}
+            <mat-card-title mat-line>{{contact.phoneNumber}}</mat-card-title>
+           <button mat-raised-button class="float-right" (click)="deleteContact(contact.contactId)"><mat-icon>delete</mat-icon></button> 
+            <mat-icon class="float-right">edit</mat-icon>
+        </mat-card-content>
+        <mat-divider *ngIf="!last"></mat-divider>
+      </mat-card> 
+</div>
